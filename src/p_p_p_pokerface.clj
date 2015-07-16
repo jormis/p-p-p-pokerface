@@ -1,12 +1,19 @@
 (ns p-p-p-pokerface)
 
-(defn rank [card]
-  nil)
-
+; 2015-07-16
 (defn suit [card]
-  nil)
+  (let [[rank-var suit-var] (seq card)]
+    (str suit-var)))
 
-(defn pair? [hand]
+; 2015-07-16
+(defn rank [card]
+  (let [[rank-var suit-var] (seq card)
+    replacements { \A 14, \K 13, \Q 12, \J 11 \T 10 }]
+    (cond
+      (Character/isDigit rank-var) (Integer/valueOf (str rank-var)) 
+      :else (get replacements rank-var))))
+
+(defn pair? [hand] 
   nil)
 
 (defn three-of-a-kind? [hand]
