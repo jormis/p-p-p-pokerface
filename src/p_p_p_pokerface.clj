@@ -19,16 +19,16 @@
   (== (count (filter (fn [x] (== x 2)) (vals (frequencies (map rank hand))))) 1))
 
 (defn three-of-a-kind? [hand]
-  nil)
+  (== (count (filter (fn [x] (== x 3)) (vals (frequencies (map rank hand))))) 1))
 
 (defn four-of-a-kind? [hand]
-  nil)
+  (== (count (filter (fn [x] (== x 4)) (vals (frequencies (map rank hand))))) 1))
 
 (defn flush? [hand]
   nil)
 
 (defn full-house? [hand]
-  nil)
+  (and (pair? hand) (three-of-a-kind? hand)))
 
 (defn two-pairs? [hand]
   nil)
