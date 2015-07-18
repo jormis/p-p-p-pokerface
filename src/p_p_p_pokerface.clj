@@ -31,7 +31,8 @@
   (and (pair? hand) (three-of-a-kind? hand)))
 
 (defn two-pairs? [hand]
-  (== (count (filter (fn [x] (== x 2)) (vals (frequencies (map rank hand))))) 2))
+  (or (== (count (filter (fn [x] (== x 2)) (vals (frequencies (map rank hand))))) 2)
+    (four-of-a-kind? hand)))
 
 (defn straight? [hand]
   nil)
