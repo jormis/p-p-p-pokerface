@@ -35,10 +35,17 @@
     (four-of-a-kind? hand)))
 
 (defn straight? [hand]
-  nil)
+  (let [sorted-hand (sort (map rank hand))
+      sorted-hand-with-ace-as-one (sort (map (fn [x] (if (== 14 x) 1 x)) (map rank hand)))
+      lowest-rank (first sorted-hand)
+      lowest-rank-with-ace-as-one (first sorted-hand-with-ace-as-one)]
+    (or (= sorted-hand (range lowest-rank (+ lowest-rank 5)))
+      (= sorted-hand-with-ace-as-one 
+        (range lowest-rank-with-ace-as-one (+ lowest-rank-with-ace-as-one 5))))))
 
 (defn straight-flush? [hand]
-  nil)
+  (and (straight? hand) (flush? hand)))
 
 (defn value [hand]
   nil)
+; Höpönlöpönlöpön, mene hakemaan kaupasta karkkia.
