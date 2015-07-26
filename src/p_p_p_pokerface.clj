@@ -46,6 +46,18 @@
 (defn straight-flush? [hand]
   (and (straight? hand) (flush? hand)))
 
+; For value().
+(defn high-card? [hand]
+  true)
+
 (defn value [hand]
-  nil)
+	(let [checkers #{[high-card? 0]  [pair? 1]
+                 [two-pairs? 2]  [three-of-a-kind? 3]
+                 [straight? 4]   [flush? 5]
+                 [full-house? 6] [four-of-a-kind? 7]
+                 [straight-flush? 8]}]
+    	; filter evaluates/runs the first item in a (sequence) pair (data is code) for the hand and if true returns the value
+    	; (second), otherwise false. Only non-false items are then map-seconded and finally max is taken.
+    	(apply max (map second (filter (fn [x] (if ((first x) hand) (second x) false)) checkers)))))
+
 ; Höpönlöpönlöpön, mene hakemaan kaupasta karkkia.
