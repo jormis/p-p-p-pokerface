@@ -56,8 +56,6 @@
                  [straight? 4]   [flush? 5]
                  [full-house? 6] [four-of-a-kind? 7]
                  [straight-flush? 8]}]
-    	; filter evaluates/runs the first item in a (sequence) pair (data is code) for the hand and if true returns the value
-    	; (second), otherwise false. Only non-false items are then map-seconded and finally max is taken.
-    	(apply max (map second (filter (fn [x] (if ((first x) hand) (second x) false)) checkers)))))
+    	(apply max (map second (filter (fn [x] ((first x) hand)) checkers)))))
 
 ; Höpönlöpönlöpön, mene hakemaan kaupasta karkkia.
